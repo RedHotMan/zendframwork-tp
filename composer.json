@@ -20,20 +20,19 @@
         "ramsey/uuid": "^3.7",
         "symfony/dotenv": "^4.0",
         "zendframework/zend-i18n": "^2.7",
-        "zendframework/zend-form": "^2.11",
-        "symfony/var-dumper": "^4.0"
+        "zendframework/zend-form": "^2.11"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "Cinema\\": "module/Cinema/src/",
             "Meetup\\": "module/Meetup/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "ApplicationTest\\": "module/Application/test/"
-        }
+        },
+        "symfony/var-dumper": "^4.0"
     },
     "extra": [],
     "scripts": {
