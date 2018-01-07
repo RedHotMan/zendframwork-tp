@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Meetup\Form;
 
@@ -7,6 +7,7 @@ use Zend\Form\Element;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\Validator\Date;
+use Zend\Validator\GreaterThan;
 use Zend\Validator\StringLength;
 
 class MeetupForm extends Form implements InputFilterProviderInterface
@@ -54,7 +55,7 @@ class MeetupForm extends Form implements InputFilterProviderInterface
             'attributes' => [
                 'placeholder' => 'Meetup Date de début',
                 'class' => 'form-control',
-                'min' => '2018-01-07',
+                'min' => '2018-01-01',
                 'max' => '2018-12-31',
                 'step' => '1',
             ]
@@ -70,9 +71,11 @@ class MeetupForm extends Form implements InputFilterProviderInterface
                 'class' => 'form-control',
                 'step' => '1',
                 'max' => '2018-12-31',
+                'min' => '2018-01-01',
             ]
         ]);
     }
+    
     public function getInputFilterSpecification()
     {
 
@@ -93,7 +96,7 @@ class MeetupForm extends Form implements InputFilterProviderInterface
                 'required' => true,
                 'validators' => [
                     [
-                       'name' => StringLength::class,
+                        'name' => StringLength::class,
                         'options' => [
                             'min' => 1,
                             'max' => 500,
@@ -105,12 +108,17 @@ class MeetupForm extends Form implements InputFilterProviderInterface
                 'required' => true,
                 'validators' => [
                     [
+                        'name' => GreaterThan::class,
+                        'options' => [
+                            'min' => date('Y-m-d'),
+                            'inclusive' => true,
+                        ],
+                    ],
+                    [
                         'name' => Date::class,
                         'options' => [
                             'format' => 'Y-m-d',
-                            'min' => date('2018-01-07'),
-                            'max' => date('2018-12-31')
-                        ],
+                        ]
                     ]
                 ]
             ],
@@ -118,10 +126,16 @@ class MeetupForm extends Form implements InputFilterProviderInterface
                 'required' => true,
                 'validators' => [
                     [
+                        'name' => GreaterThan::class,
+                        'options' => [
+                            'min' => date('Y-m-d'),
+                            'inclusive' => false,
+                        ]
+                    ],
+                    [
                         'name' => Date::class,
                         'options' => [
                             'format' => 'Y-m-d',
-                            'max' => date('2018-12-31')
                         ]
                     ]
                 ]
