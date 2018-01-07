@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace Meetup\Controller;
 
-use Meetup\Entity\Meetup as MeetupEntity;
 use Meetup\Repository\MeetupRepository;
 use Meetup\Form\MeetupForm;
-use Meetup\Form\UpdateForm;
-use Zend\Http\PhpEnvironment\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -23,6 +20,7 @@ final class IndexController extends AbstractActionController
      * @var MeetupForm
      */
     private $meetupForm;
+
 
     public function __construct(MeetupRepository $meetupRepository, MeetupForm $meetupForm)
     {
@@ -104,6 +102,16 @@ final class IndexController extends AbstractActionController
         }
         return new ViewModel([
             'form' => $form,
+            'meetup' => $meetup,
+        ]);
+    }
+
+    public function detailAction()
+    {
+        $id = $this->params()->fromRoute('id', -1);
+        $meetup = $this->meetupRepository->findOneById($id);
+
+        return new ViewModel([
             'meetup' => $meetup,
         ]);
     }

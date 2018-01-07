@@ -49,6 +49,15 @@ return [
                             ],
                         ],
                     ],
+                    'detail' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/detail[/:id]',
+                            'defaults' => [
+                                'action' => 'detail',
+                            ]
+                        ]
+                    ]
                 ],
             ],
         ],
@@ -68,6 +77,7 @@ return [
             'meetup/index/index' => __DIR__ . '/../view/meetup/index/index.phtml',
             'meetup/index/add' => __DIR__ . '/../view/meetup/index/add.phtml',
             'meetup/index/update' => __DIR__ . '/../view/meetup/index/update.phtml',
+            'meetup/index/detail' => __DIR__ . '/../view/meetup/index/detail.phtml',
         ],
     ],
     'doctrine' => [

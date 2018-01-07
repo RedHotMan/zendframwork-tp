@@ -26,7 +26,7 @@ class Meetup
      */
     private $title;
     /**
-     * @ORM\Column(type="string", length=2000, nullable=false)
+     * @ORM\Column(type="string", length=500, nullable=false)
      */
     private $description = '';
 
@@ -35,14 +35,12 @@ class Meetup
      */
     private $date_debut;
 
-
     /**
      * @ORM\Column(type="string", length=100, nullable=false)
      */
     private $date_fin;
 
-
-    public function __construct(string $title, string $description = '', string $date_debut, string $date_fin)
+    public function __construct($title,$description = '', $date_debut, $date_fin)
     {
         $this->id = Uuid::uuid4()->toString();
         $this->title = $title;
@@ -56,42 +54,43 @@ class Meetup
         return $this->id;
     }
 
-    public function getDateDebut() : string
+    public function getDateDebut()
     {
         return $this->date_debut;
     }
 
-    public function setDateDebut(string $date_debut) : void
+    public function setDateDebut($date_debut)
     {
         $this->date_debut = $date_debut;
     }
 
-    public function getDateFin() : string
+    public function getDateFin()
     {
         return $this->date_fin;
     }
 
-    public function setDateFin(string $date_fin) : void
+    public function setDateFin($date_fin)
     {
         $this->date_fin = $date_fin;
     }
 
 
-    public function getTitle() : string
+    public function getTitle()
     {
         return $this->title;
     }
 
-    public function setTitle(string $title) :void
+    public function setTitle($title)
     {
         $this->title = $title;
     }
 
-    public function getDescription() : string
+    public function getDescription()
     {
         return $this->description;
     }
-    public function setDescription(string $description) : void
+
+    public function setDescription($description)
     {
         $this->description = $description;
     }

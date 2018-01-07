@@ -129,8 +129,8 @@ class MeetupForm extends Form implements InputFilterProviderInterface
                         'name' => GreaterThan::class,
                         'options' => [
                             'min' => date('Y-m-d'),
-                            'inclusive' => false,
-                        ]
+                            'inclusive' => true,
+                        ],
                     ],
                     [
                         'name' => Date::class,

@@ -7,19 +7,19 @@ use Doctrine\ORM\EntityRepository;
 
 final class MeetupRepository extends EntityRepository
 {
-    public function add($meetup) : void
+    public function add($meetup)
     {
         $this->getEntityManager()->persist($meetup);
         $this->getEntityManager()->flush($meetup);
     }
 
-    public function remove($meetup) : void
+    public function remove($meetup)
     {
         $this->getEntityManager()->remove($meetup);
         $this->getEntityManager()->flush();
     }
 
-    public function update($meetup, $data) : void
+    public function update($meetup, $data)
     {
         $meetup->setTitle($data['title']);
         $meetup->setDescription($data['description']);
@@ -29,7 +29,7 @@ final class MeetupRepository extends EntityRepository
         $this->getEntityManager()->flush();
     }
 
-    public function createMeetupFromNameAndDescription(string $name, string $description, string $date_debut, string $date_fin)
+    public function createMeetupFromNameAndDescription($name, $description, $date_debut, $date_fin)
     {
         return new Meetup($name, $description, $date_debut, $date_fin);
     }

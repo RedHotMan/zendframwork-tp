@@ -11,7 +11,7 @@ use Psr\Container\ContainerInterface;
 
 final class IndexControllerFactory
 {
-    public function __invoke(ContainerInterface $container) : IndexController
+    public function __invoke(ContainerInterface $container)
     {
         $meetupRepository = $container->get(EntityManager::class)->getRepository(Meetup::class);
         $meetupForm = $container->get(MeetupForm::class);

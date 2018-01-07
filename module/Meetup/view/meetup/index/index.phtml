@@ -20,13 +20,18 @@
 </div>
 
 <div>
-    <?php if(sizeof($this->meetup) > 0): ?>
+    <?php if (sizeof($this->meetup) > 0): ?>
         <div class="row">
             <?php foreach ($this->meetup as $meetup): ?>
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 class="panel-title" style="text-transform: uppercase; text-align: center"><?= $meetup->getTitle() ?></h2>
+                            <h2 class="panel-title" style="text-transform: uppercase; text-align: center; color:#ffffff;">
+                                <a type="button" href="<?= 'meetup/detail/' . $meetup->getId(); ?>"
+                                   class="btn btn-info btn-lg">
+                                    <?= $meetup->getTitle() ?>
+                                </a>
+                            </h2>
                         </div>
                         <div class="panel-body">
                             <div class="dates">
@@ -38,8 +43,10 @@
                             </div>
                         </div>
                         <div class="panel-footer" style="text-align: center">
-                            <a type="button" href="<?= 'meetup/update/'.$meetup->getId(); ?>" class="btn btn-warning btn-sm">Update</a>
-                            <a type="button" href="<?= 'meetup/remove/'.$meetup->getId(); ?>" class="btn btn-danger btn-sm">Delete</a>
+                            <a type="button" href="<?= 'meetup/update/' . $meetup->getId(); ?>"
+                               class="btn btn-warning btn-sm">Update</a>
+                            <a type="button" href="<?= 'meetup/remove/' . $meetup->getId(); ?>"
+                               class="btn btn-danger btn-sm">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -48,7 +55,8 @@
         </div>
     <?php else: ?>
         <div>
-            <div class="alert alert-warning" role="alert">No existing Meetup. Be the first to create a new Meetup !</div>
+            <div class="alert alert-warning" role="alert">No existing Meetup. Be the first to create a new Meetup !
+            </div>
         </div>
     <?php endif; ?>
 </div>

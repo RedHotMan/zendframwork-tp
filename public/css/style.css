@@ -35,3 +35,26 @@ div.container a.navbar-brand > img {
     margin-right: 4px;
     margin-top: -2px;
 }
+
+.detail_date_list {
+    list-style: none;
+    margin-top:30px;
+    text-align: center;
+}
+
+.detail_date_list li {
+    display: inline-block;
+    margin-right:30px;
+    text-align: center;
+}
+
+#actions
+{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.error
+{
+    color: red;
+}
