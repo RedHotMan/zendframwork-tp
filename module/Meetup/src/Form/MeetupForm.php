@@ -9,6 +9,7 @@ use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\Validator\Date;
 use Zend\Validator\GreaterThan;
 use Zend\Validator\StringLength;
+use Zend\Validator\Callback;
 
 class MeetupForm extends Form implements InputFilterProviderInterface
 {
@@ -50,10 +51,9 @@ class MeetupForm extends Form implements InputFilterProviderInterface
             'type' => Element\Date::class,
             'name' => 'date_debut',
             'options' => [
-                'label' => 'Date de début',
+                'label' => 'Start date',
             ],
             'attributes' => [
-                'placeholder' => 'Meetup Date de début',
                 'class' => 'form-control',
                 'min' => '2018-01-01',
                 'max' => '2018-12-31',
@@ -64,10 +64,9 @@ class MeetupForm extends Form implements InputFilterProviderInterface
             'type' => Element\Date::class,
             'name' => 'date_fin',
             'options' => [
-                'label' => 'Date de fin',
+                'label' => 'End date',
             ],
             'attributes' => [
-                'placeholder' => 'Meetup Date de fin',
                 'class' => 'form-control',
                 'step' => '1',
                 'max' => '2018-12-31',
@@ -136,6 +135,20 @@ class MeetupForm extends Form implements InputFilterProviderInterface
                         'name' => Date::class,
                         'options' => [
                             'format' => 'Y-m-d',
+                        ]
+                    ],
+                    [
+                        'name' => Callback::class,
+                        'options' => [
+                            'callback' => function ($value, $context = []){
+                                $date_debut = new Date($context['date_debut'] ?? null);
+                                $date_fin = new Date($value);
+
+                                return $date_debut <= $date_fin;
+                            },
+                            'messages' => [
+                                Callback::INVALID_VALUE => '%value% must be greater than the start date',
+                            ],
                         ]
                     ]
                 ]
