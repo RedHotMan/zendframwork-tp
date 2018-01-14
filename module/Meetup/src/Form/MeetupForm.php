@@ -85,7 +85,7 @@ class MeetupForm extends Form implements InputFilterProviderInterface
                     [
                         'name' => StringLength::class,
                         'options' => [
-                            'min' => 5,
+                            'min' => 4,
                             'max' => 20,
                         ],
                     ],
